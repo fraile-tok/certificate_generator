@@ -50,6 +50,12 @@ def convert_to_pdf(pptx_path: Path, pdf_path: Path):
         check=True,
     )
 
+    try:
+        pptx_path.unlink()
+        print(f"Deleted PPTX: {pptx_path}")
+    except Exception as e:
+        print(f"Could not delete {pptx_path}: {e}")
+
 def main():
     with CSV_FILE.open(newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
